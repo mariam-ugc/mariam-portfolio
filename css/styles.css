@@ -46,3 +46,89 @@
 /* GitHub master: la bombilla decorativa nunca bloquea contenido interactivo */
 .stage-mascot{z-index:10!important;pointer-events:none!important}
 #acto2 .poster-stage,#acto2 .poster-carousel,#acto2 .poster-phone{position:relative;z-index:20}
+
+
+/* === ACTUALIZACIÓN 15-10-2026: únicamente tres ajustes solicitados === */
+/* 1. Bombilla viajera: nunca atraviesa el centro de Mis Producciones.
+   El elemento es fijo en BODY, no hijo de #portfolio: por eso el selector correcto
+   es .stage-mascot[data-scene="portfolio" (no #act2 ni #acto2). */
+.stage-mascot[data-scene="portfolio"] {
+  right: max(18px, 3vw) !important;
+  top: 30vh !important;
+  transform: scale(.72) !important;
+  filter: drop-shadow(0 8px 10px rgba(225,177,75,.35));
+}
+/* La bombilla no se interpone tampoco durante el paso entre secciones. */
+#portfolio .poster-stage { isolation: isolate; position: relative; z-index: 55; }
+
+/* 2. Carrusel de teléfonos legible en pantallas táctiles.
+   Centro ancho, laterales asomando, manteniendo los tres visibles y clicables. */
+@media (max-width: 760px) {
+  #portfolio { overflow: hidden; }
+  #portfolio .poster-stage {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 34px;
+    gap: 3px;
+    margin: 26px -12px 22px;
+    align-items: center;
+  }
+  #portfolio .poster-stage .round { width: 34px; height: 44px; font-size: 22px; position: relative; z-index: 6; }
+  #portfolio .poster-carousel {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: clamp(355px, 112vw, 530px);
+    min-height: 0;
+    overflow: visible;
+    perspective: 900px;
+    touch-action: pan-y;
+  }
+  #portfolio .poster-phone {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: min(62vw, 275px);
+    height: auto;
+    aspect-ratio: 9 / 16;
+    min-width: 0;
+    padding: 12px;
+    border: 6px solid var(--tinta);
+    border-radius: 23px;
+    opacity: .55;
+    overflow: hidden;
+    transition: transform .45s ease, opacity .45s ease, filter .45s ease;
+  }
+  #portfolio .poster-phone.center {
+    transform: translate(-50%, -50%) scale(1) !important;
+    opacity: 1;
+    z-index: 3;
+  }
+  #portfolio .poster-phone.left {
+    transform: translate(-111%, -50%) scale(.76) rotateY(12deg) !important;
+    z-index: 1;
+  }
+  #portfolio .poster-phone.right {
+    transform: translate(11%, -50%) scale(.76) rotateY(-12deg) !important;
+    z-index: 1;
+  }
+  #portfolio .poster-phone h3 { font-size: clamp(15px, 4vw, 22px); }
+  #portfolio .poster-phone p { font-size: 12px; }
+  #portfolio .poster-phone .label { font-size: 10px; }
+  .stage-mascot[data-scene="portfolio"] {
+    right: 6px !important;
+    top: 14vh !important;
+    transform: scale(.52) !important;
+  }
+}
+
+/* 3. Recuperar apertura teatral de la puerta del Backstage.
+   Solo al pulsar la puerta física, no al usar el acceso de la navegación. */
+.door { transform-origin: left center; transform-style: preserve-3d; backface-visibility: hidden; }
+.door.opening {
+  transform: perspective(750px) rotateY(-77deg) !important;
+  box-shadow: 28px 8px 35px #29273555 !important;
+  transition: transform .7s cubic-bezier(.2,.7,.15,1) !important;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .door.opening { transition: none !important; }
+}
