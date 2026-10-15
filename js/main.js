@@ -27,10 +27,7 @@ const vanityBulbs=document.getElementById('vanity-bulbs');if(vanityBulbs){for(le
 /* TRANSICIÓN DE PUERTA ORIGINAL: solo entrada/salida del Backstage. */
 const backstage=document.getElementById('backstage');
 let returnY=0, backstageTransitioning=false;
-const entry=document.createElement('div');
-entry.id='backstage-entry';entry.className='backstage-entry';entry.setAttribute('aria-hidden','true');
-entry.innerHTML='<div id="dressing-door" class="dressing-door"><div class="door-star"><div><strong>Mariam</strong><br><span>Creative Storyteller · Backstage</span></div></div><div class="door-knob"></div></div>';
-document.body.appendChild(entry);
+const entry=document.getElementById('backstage-entry');
 const dressingDoor=document.getElementById('dressing-door');
 function enterBackstage(){
   if(backstageTransitioning||backstage.classList.contains('open'))return;
