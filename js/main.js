@@ -51,3 +51,41 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tariffModal.classLi
    }
  },{passive:true});
 })();
+/* TRANSICIÓN DE PUERTA ORIGINAL: solo entrada/salida del Backstage. */
+const backstage=document.getElementById('backstage');
+let returnY=0, backstageTransitioning=false;
+const entry=document.createElement('div');
+entry.id='backstage-entry';entry.className='backstage-entry';entry.setAttribute('aria-hidden','true');
+entry.innerHTML='<div id="dressing-door" class="dressing-door"><div class="door-star"><div><strong>Mariam</strong><br><span>Creative Storyteller · Backstage</span></div></div><div class="door-knob"></div></div>';
+document.body.appendChild(entry);
+const dressingDoor=document.getElementById('dressing-door');
+function enterBackstage(){
+  if(backstageTransitioning||backstage.classList.contains('open'))return;
+  backstageTransitioning=true;returnY=window.scrollY;
+  entry.classList.add('show');entry.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  dressingDoor.classList.remove('opening');
+  void dressingDoor.offsetWidth;
+  setTimeout(()=>dressingDoor.classList.add('opening'),450);
+  setTimeout(()=>{
+    backstage.classList.add('open');backstage.setAttribute('aria-hidden','false');
+    document.getElementById('camerino').scrollIntoView({behavior:'auto'});
+    entry.classList.remove('show');entry.setAttribute('aria-hidden','true');
+    dressingDoor.classList.remove('opening');backstageTransitioning=false;
+  },1450);
+}
+function leaveBackstage(){
+  if(backstageTransitioning||!backstage.classList.contains('open'))return;
+  backstageTransitioning=true;
+  entry.classList.add('show');entry.setAttribute('aria-hidden','false');
+  dressingDoor.classList.add('opening');
+  backstage.classList.remove('open');backstage.setAttribute('aria-hidden','true');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>dressingDoor.classList.remove('opening')));
+  setTimeout(()=>{
+    entry.classList.remove('show');entry.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';window.scrollTo({top:returnY,behavior:'auto'});
+    backstageTransitioning=false;
+  },1100);
+}
+document.querySelectorAll('.backstage-trigger').forEach(b=>b.addEventListener('click',enterBackstage));
+document.getElementById('return-stage').addEventListener('click',leaveBackstage);
