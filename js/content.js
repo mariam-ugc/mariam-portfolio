@@ -10,9 +10,9 @@ window.MARIAM_CONTENT = {
     email: "TU_EMAIL_AQUI"
   },
   featuredProductions: [
-    { title:"James Baroud Space", type:"UGC Y PRODUCTO", description:"Tutorial / producto · concepto, grabación, voz y edición.", video:"" },
-    { title:"Planeta · Evento", type:"COBERTURA + PARTICIPATIVO", description:"Entrevistas y contenido participativo en lanzamiento editorial.", video:"" },
-    { title:"Cosmopolitan · El último amanecer", type:"UGC Y PRODUCTO", description:"Tote bag · unboxing, hook, voz en off y edición.", video:"" }
+    { title:"Tote Bag · Cosmopolitan", type:"UGC Y PRODUCTO", description:"Presentación creativa de producto · Cosmopolitan × Planeta Internacional.", video:"assets/videos/destacados/tote.mp4" },
+    { title:"El día de la Trilla", type:"ENTREVISTAS A LECTORES", description:"Entrevistas a lectores · evento editorial de la serie Empíreo.", video:"assets/videos/destacados/trilla.mp4" },
+    { title:"James Baroud · Montaje", type:"UGC Y PRODUCTO", description:"Tutorial de montaje · demostración de producto.", video:"assets/videos/destacados/james.mp4" }
   ],
   storytelling: {
     comedia:["VÍDEO · COMEDIA","Performance, humor, personajes y un giro inesperado.",""],
