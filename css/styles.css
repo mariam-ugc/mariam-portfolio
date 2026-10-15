@@ -141,3 +141,9 @@
 #portfolio .poster-phone.center .production-video{z-index:2}
 #portfolio .poster-phone.center .production-caption{z-index:1;opacity:0}
 #portfolio .poster-phone.center:hover .production-caption{opacity:0}
+
+/* GALERÍA REAL — solo tarjetas de la galería; no altera los tres teléfonos. */
+#gallery .real-gallery-card{padding:0 0 18px;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;background:var(--blanco)}
+#gallery .real-gallery-card video{display:block;width:100%;aspect-ratio:9/16;max-height:450px;object-fit:contain;background:#191522;margin-bottom:14px}
+#gallery .real-gallery-card .label,#gallery .real-gallery-card h3{margin:0 16px 8px}
+#gallery .real-gallery-card h3{font-size:clamp(16px,2vw,21px);line-height:1.3}
