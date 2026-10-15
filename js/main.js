@@ -78,3 +78,13 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tariffModal.classLi
    }
  },{passive:true});
 })();
+
+// Reproducción exclusiva: al iniciar cualquier vídeo, se pausan los demás.
+// Captura el evento incluso en vídeos creados dinámicamente por el carrusel y la galería.
+document.addEventListener('play', function (event) {
+  const current = event.target;
+  if (!(current instanceof HTMLVideoElement)) return;
+  document.querySelectorAll('video').forEach(function (video) {
+    if (video !== current && !video.paused) video.pause();
+  });
+}, true);
