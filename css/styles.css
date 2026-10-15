@@ -132,3 +132,12 @@
 @media (prefers-reduced-motion: reduce) {
   .door.opening { transition: none !important; }
 }
+
+/* Vídeos reales en los teléfonos: se mantiene el tamaño y el carrusel aprobado. */
+#portfolio .poster-phone{overflow:hidden;isolation:isolate;padding:0;background:#17131f}
+#portfolio .poster-phone .production-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#17131f}
+#portfolio .poster-phone .production-caption{position:relative;z-index:1;align-self:stretch;margin-top:auto;padding:42px 12px 12px;background:linear-gradient(transparent,rgba(15,12,25,.83));color:white;pointer-events:none}
+#portfolio .poster-phone .production-caption h3,#portfolio .poster-phone .production-caption p,#portfolio .poster-phone .production-caption .label{color:white}
+#portfolio .poster-phone.center .production-video{z-index:2}
+#portfolio .poster-phone.center .production-caption{z-index:1;opacity:0}
+#portfolio .poster-phone.center:hover .production-caption{opacity:0}
